@@ -11,8 +11,13 @@
 
     <button @click="setAge">Change Age</button>
     <div>
-        <input type="text" placeholder="First Name" @input="setFirstName" />
-        <input type="text" placeholder="Last Name" @input="setLastName" />
+        <!-- <input type="text" placeholder="First Name" @input="setFirstName" />
+        <input type="text" placeholder="Last Name" @input="setLastName" /> -->
+
+        <!-- 2-way binding still works in template same way with Composition API (without needing .value) -->
+        <input type="text" placeholder="First Name" v-model="firstName" />
+        <input type="text" placeholder="Last Name" v-model="lastName" />
+
     </div>
   </section>
 </template>
@@ -51,13 +56,13 @@ export default {
       user.age = 32
     }
 
-    function setFirstName(event) {
-      firstName.value = event.target.value
-    }
+    // function setFirstName(event) {
+    //   firstName.value = event.target.value
+    // }
 
-    function setLastName(event) {
-      lastName.value = event.target.value
-    }
+    // function setLastName(event) {
+    //   lastName.value = event.target.value
+    // }
 
     // setTimeout(function() {
     //   // ref() approach
@@ -70,7 +75,13 @@ export default {
     // }, 2000)
 
     // refs() approach
-    return { userName: uName, age: uAge, setAge: setNewAge, setFirstName, setLastName } // return whatever you want to expose to template
+    return {
+      userName: uName,
+      age: uAge,
+      setAge: setNewAge,
+      firstName,
+      lastName
+    } // return whatever you want to expose to template
 
     // reactive() approach
     // passing 'raw' object (user) lets template use this in a reactive way
