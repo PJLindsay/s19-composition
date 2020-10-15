@@ -23,7 +23,7 @@
 </template>
 
 <script>
-import { ref, reactive, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 
 export default {
   // NEW WAY: (Composition API)
@@ -42,18 +42,29 @@ export default {
       return `${firstName.value} ${lastName.value}`
     })
 
-    // reactive() approach
-    const user = reactive({
-      name: 'Maximilian',
-      age: 31
+    // this is how we use watch in Composition API
+    // whenever uAge or uName changes, this will execute
+    watch([uAge, uName], function(newValues, oldValues) {
+      console.log('Old age: ' + oldValues[0])
+      console.log('New age: ' + newValues[0])
+
+      console.log('Old name: ' + oldValues[1])
+      console.log('New name: ' + newValues[1])
     })
+
+
+    // reactive() approach
+    // const user = reactive({
+    //   name: 'Maximilian',
+    //   age: 31
+    // })
 
     function setNewAge() {
       // ref() approach
-      // uAge.value = 32
+      uAge.value = 32
 
       // reactive() approach
-      user.age = 32
+      // user.age = 32
     }
 
     // function setFirstName(event) {
