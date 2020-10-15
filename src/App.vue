@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import { ref } from 'vue'
+import { reactive } from 'vue'
 
 export default {
   // NEW WAY: (Composition API)
@@ -14,7 +14,7 @@ export default {
     // const uName = ref('Maximilian') // create a reference (a reactive value we can use in our template)
     // const uAge = ref(31)
 
-    const user = ref({
+    const user = reactive({
       name: 'Maximilian',
       age: 31
     })
@@ -22,13 +22,14 @@ export default {
     setTimeout(function() {
       // uName.value = 'Max'
       // uAge.value = 32
-      user.value.name = 'Max'
-      user.value.age = 32
+      user.name = 'Max'
+      user.age = 32
     }, 2000)
 
     // passing 'raw' object (user) lets template use this in a reactive way
-    return { userName: user.value.name, age: user.value.age, user: user } // return whatever you want to expose to template
-  },
+    // return { userName: user.value.name, age: user.value.age, user: user } // return whatever you want to expose to template
+    return { user: user }
+},
   // OLD WAY: (Options API)
   // data() {
   //   return {
