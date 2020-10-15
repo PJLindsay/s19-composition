@@ -5,13 +5,24 @@
 </template>
 
 <script>
+import { ref } from 'vue'
+
 export default {
-  data() {
-    return {
-      userName: 'Maximilian',
-    }
+  setup() {
+    const uName = ref('Maximilian') // create a reference (a reactive value we can use in our template)
+
+    setTimeout(function() {
+      uName.value = 'Max'
+    }, 2000)
+
+    return { userName: uName} // return whatever you want to expose to template
   },
-};
+  // data() {
+  //   return {
+  //     userName: 'Maximilian',
+  //   }
+  // },
+}
 </script>
 
 <style>

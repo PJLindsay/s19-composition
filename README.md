@@ -2,7 +2,7 @@
 
 Udemy Vue3 course Section 19
 
-Sample: refactoring Options API (Vue2) to Composition API (Vue3)
+Illustrate Composition API features and behaviour
 
 
 ## Concepts
