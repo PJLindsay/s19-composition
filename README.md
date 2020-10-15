@@ -30,6 +30,11 @@ props, emits, components
 - ref() works with everything (String, Number, Object) and has '.value' wrapper: user.value.age
 - reactive() works only with objects and eliminates .value wrapper: user.age
 
+## Helper methods
+
+- isRef() and isReactive() - tell which kind we are working with
+- toRefs() - turn an objects' properties into refs
+
 ## Installation
 
 npm install

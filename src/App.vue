@@ -11,23 +11,31 @@ import { reactive } from 'vue'
 export default {
   // NEW WAY: (Composition API)
   setup() {
+    // ref() approach
     // const uName = ref('Maximilian') // create a reference (a reactive value we can use in our template)
     // const uAge = ref(31)
 
+    // reactive() approach
     const user = reactive({
       name: 'Maximilian',
       age: 31
     })
 
     setTimeout(function() {
+      // ref() approach
       // uName.value = 'Max'
       // uAge.value = 32
+
+      // reactive() approach
       user.name = 'Max'
       user.age = 32
     }, 2000)
 
-    // passing 'raw' object (user) lets template use this in a reactive way
+    // refs() approach
     // return { userName: user.value.name, age: user.value.age, user: user } // return whatever you want to expose to template
+
+    // reactive() approach
+    // passing 'raw' object (user) lets template use this in a reactive way
     return { user: user }
 },
   // OLD WAY: (Options API)
