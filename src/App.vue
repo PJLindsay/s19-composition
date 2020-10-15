@@ -1,13 +1,24 @@
 <template>
   <section class="container">
-    <h2>{{ user.name }}</h2>
-    <h3>{{ user.age }}</h3>
+    <!-- reactive() approach -->
+    <!-- <h2>{{ user.name }}</h2>
+    <h3>{{ user.age }}</h3> -->
+
+
+    <!-- ref() approach -->
+    <h2>{{ userName }}</h2>
+    <h3>{{ age }}</h3>
+
     <button @click="setAge">Change Age</button>
+    <div>
+        <input type="text" placeholder="First Name" @input="setFirstName" />
+        <input type="text" placeholder="Last Name" @input="setLastName" />
+    </div>
   </section>
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { ref, reactive, computed } from 'vue'
 
 export default {
   // NEW WAY: (Composition API)
@@ -17,7 +28,14 @@ export default {
 
     // ref() approach
     // const uName = ref('Maximilian') // create a reference (a reactive value we can use in our template)
-    // const uAge = ref(31)
+    const uAge = ref(31)
+    const firstName = ref('')
+    const lastName = ref('')
+
+    // computed property is a ref() as well, but it's READ-ONLY
+    const uName = computed(function()  {
+      return `${firstName.value} ${lastName.value}`
+    })
 
     // reactive() approach
     const user = reactive({
@@ -33,6 +51,14 @@ export default {
       user.age = 32
     }
 
+    function setFirstName(event) {
+      firstName.value = event.target.value
+    }
+
+    function setLastName(event) {
+      lastName.value = event.target.value
+    }
+
     // setTimeout(function() {
     //   // ref() approach
     //   // uName.value = 'Max'
@@ -44,11 +70,11 @@ export default {
     // }, 2000)
 
     // refs() approach
-    // return { userName: user.value.name, age: user.value.age, user: user } // return whatever you want to expose to template
+    return { userName: uName, age: uAge, setAge: setNewAge, setFirstName, setLastName } // return whatever you want to expose to template
 
     // reactive() approach
     // passing 'raw' object (user) lets template use this in a reactive way
-    return { user: user, setAge: setNewAge } // setAge is a 'pointer' to method
+    // return { user: user, setAge: setNewAge } // setAge is a 'pointer' to method
 },
   // OLD WAY: (Options API)
   // data() {
