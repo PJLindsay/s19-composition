@@ -2,6 +2,7 @@
   <section class="container">
     <h2>{{ user.name }}</h2>
     <h3>{{ user.age }}</h3>
+    <button @click="setAge">Change Age</button>
   </section>
 </template>
 
@@ -11,6 +12,9 @@ import { reactive } from 'vue'
 export default {
   // NEW WAY: (Composition API)
   setup() {
+
+    /* DATA replacement */
+
     // ref() approach
     // const uName = ref('Maximilian') // create a reference (a reactive value we can use in our template)
     // const uAge = ref(31)
@@ -21,22 +25,30 @@ export default {
       age: 31
     })
 
-    setTimeout(function() {
+    function setNewAge() {
       // ref() approach
-      // uName.value = 'Max'
       // uAge.value = 32
 
       // reactive() approach
-      user.name = 'Max'
       user.age = 32
-    }, 2000)
+    }
+
+    // setTimeout(function() {
+    //   // ref() approach
+    //   // uName.value = 'Max'
+    //   // uAge.value = 32
+
+    //   // reactive() approach
+    //   user.name = 'Max'
+    //   user.age = 32
+    // }, 2000)
 
     // refs() approach
     // return { userName: user.value.name, age: user.value.age, user: user } // return whatever you want to expose to template
 
     // reactive() approach
     // passing 'raw' object (user) lets template use this in a reactive way
-    return { user: user }
+    return { user: user, setAge: setNewAge } // setAge is a 'pointer' to method
 },
   // OLD WAY: (Options API)
   // data() {

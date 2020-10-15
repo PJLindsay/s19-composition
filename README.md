@@ -18,9 +18,15 @@ Issues that would occur in a large project
 These will be merged into setup()
 - data()
 - methods
+  - define inside setup() then define/return a 'pointer' in return object
+
 - computed
+  -
+
 - watch
 - Lifecycle hooks
+
+
 
 ### What Does not change?
 props, emits, components
@@ -34,6 +40,7 @@ props, emits, components
 
 - isRef() and isReactive() - tell which kind we are working with
 - toRefs() - turn an objects' properties into refs
+
 
 ## Installation
 
