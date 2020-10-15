@@ -24,6 +24,9 @@ These will be merged into setup()
   -
 
 - watch
+  - single watch can handle all variables with an array
+  - order of declaration influences array location
+
 - Lifecycle hooks
 
 

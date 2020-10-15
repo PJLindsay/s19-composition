@@ -16,7 +16,10 @@
 
         <!-- 2-way binding still works in template same way with Composition API (without needing .value) -->
         <input type="text" placeholder="First Name" v-model="firstName" />
-        <input type="text" placeholder="Last Name" v-model="lastName" />
+        <!-- <input type="text" placeholder="Last Name" v-model="lastName" /> -->
+
+        <input type="text" placeholder="Last Name" ref="lastNameInput" />
+        <button @click="setLastName">Set Last Name</button>
 
     </div>
   </section>
@@ -36,6 +39,7 @@ export default {
     const uAge = ref(31)
     const firstName = ref('')
     const lastName = ref('')
+    const lastNameInput = ref(null)
 
     // computed property is a ref() as well, but it's READ-ONLY
     const uName = computed(function()  {
@@ -67,6 +71,15 @@ export default {
       // user.age = 32
     }
 
+    // working with template refs -- our setup() refs are same as template refs
+    function setLastName() {
+      // OLD Vue2 way:
+      // lastName.value = this.$refs.lastNameInput.value
+
+      // NEW Vue3 way: (all refs are same)
+      lastName.value = lastNameInput.value.value
+    }
+
     // function setFirstName(event) {
     //   firstName.value = event.target.value
     // }
@@ -91,7 +104,8 @@ export default {
       age: uAge,
       setAge: setNewAge,
       firstName,
-      lastName
+      lastNameInput,
+      setLastName
     } // return whatever you want to expose to template
 
     // reactive() approach
