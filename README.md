@@ -39,6 +39,17 @@ props, emits, components
 - ref() works with everything (String, Number, Object) and has '.value' wrapper: user.value.age
 - reactive() works only with objects and eliminates .value wrapper: user.age
 
+- you can mix Options API with Composition API:
+  - e.g. UserData.vue has Options API computed properties, App.Vue has Composition API style
+
+setup(props, context) params:
+
+  props - 
+
+  context.attrs - properties not defined as properties which fall through
+  context.slots - access slots programatically
+  context.emit - can be used to call a custom event
+
 ## Helper methods
 
 - isRef() and isReactive() - tell which kind we are working with
