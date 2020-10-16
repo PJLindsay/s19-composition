@@ -6,10 +6,10 @@
 </template>
 
 <script>
-import { computed } from 'vue'
+import { computed, inject } from 'vue'
 
 export default {
-  props: ['firstName','lastName','age'],
+  props: ['firstName','lastName'],
   // computed: {
   //   userName() {
   //     return `${this.firstName} ${this.lastName}`
@@ -24,13 +24,18 @@ export default {
       return `${props.firstName} ${props.lastName}`
     })
 
+    // we can use provide and inject in Composition API - BEST PRACTICE: do not change injected values 
+    // (change them in module/component where it is provided)
+    const age = inject('userAge')
+
     // we see attrs, emit, slots
     console.log(context)
 
     // you can use context.emit instead of this.$emit
     context.emit('save-data')
 
-    return { userName: uName }
+    // expose injected age to template
+    return { userName: uName, age: age }
 
   }
 }

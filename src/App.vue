@@ -4,7 +4,7 @@
     <!-- <h2>{{ user.name }}</h2>
     <h3>{{ user.age }}</h3> -->
 
-    <user-data :first-name="firstName" :last-name="lastName" :age="age"></user-data>
+    <user-data :first-name="firstName" :last-name="lastName"></user-data>
 
     <!-- ref() approach -->
     <!-- <h2>{{ userName }}</h2>
@@ -27,7 +27,7 @@
 </template>
 
 <script>
-import { ref, computed, watch } from 'vue'
+import { ref, computed, provide, watch } from 'vue'
 import UserData from './components/UserData.vue'
 
 export default {
@@ -47,6 +47,9 @@ export default {
     const firstName = ref('')
     const lastName = ref('')
     const lastNameInput = ref(null)
+
+    // we can also use provide and inject in Composition API
+    provide('userAge', uAge)
 
     // computed property is a ref() as well, but it's READ-ONLY
     const uName = computed(function()  {

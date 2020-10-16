@@ -44,11 +44,13 @@ props, emits, components
 
 setup(props, context) params:
 
-  props - 
+  props
 
   context.attrs - properties not defined as properties which fall through
   context.slots - access slots programatically
   context.emit - can be used to call a custom event
+
+provide and inject
 
 ## Helper methods
 
