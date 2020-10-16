@@ -21,7 +21,6 @@ These will be merged into setup()
   - define inside setup() then define/return a 'pointer' in return object
 
 - computed
-  -
 
 - watch
   - single watch can handle all variables with an array
@@ -56,6 +55,16 @@ provide and inject
 
 - isRef() and isReactive() - tell which kind we are working with
 - toRefs() - turn an objects' properties into refs
+
+## Lifecycle Hooks
+
+Options API | Composition API
+--- | ---
+beforeCreate, created | Not Needed - replaced by setup()
+beforeMount, mounted | onBeforeMount, onMounted
+beforeUpdate, updated | onBeforeUpdate, onUpdated
+beforeUnmount, unmounted | onBeforeUnmount, onUnmounted
+
 
 
 ## Installation
