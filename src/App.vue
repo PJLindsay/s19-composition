@@ -12,60 +12,56 @@
 
     <button @click="setAge">Change Age</button>
     <div>
-        <!-- <input type="text" placeholder="First Name" @input="setFirstName" />
+      <!-- <input type="text" placeholder="First Name" @input="setFirstName" />
         <input type="text" placeholder="Last Name" @input="setLastName" /> -->
 
-        <!-- 2-way binding still works in template same way with Composition API (without needing .value) -->
-        <input type="text" placeholder="First Name" v-model="firstName" />
-        <!-- <input type="text" placeholder="Last Name" v-model="lastName" /> -->
+      <!-- 2-way binding still works in template same way with Composition API (without needing .value) -->
+      <input type="text" placeholder="First Name" v-model="firstName" />
+      <!-- <input type="text" placeholder="Last Name" v-model="lastName" /> -->
 
-        <input type="text" placeholder="Last Name" ref="lastNameInput" />
-        <button @click="setLastName">Set Last Name</button>
-
+      <input type="text" placeholder="Last Name" ref="lastNameInput" />
+      <button @click="setLastName">Set Last Name</button>
     </div>
   </section>
 </template>
 
 <script>
-import { ref, computed, provide, watch } from 'vue'
-import UserData from './components/UserData.vue'
+import { ref, computed, provide, watch } from 'vue';
+import UserData from './components/UserData.vue';
 
 export default {
-
   components: {
     UserData
   },
 
   // NEW WAY: (Composition API)
   setup() {
-
     /* DATA replacement */
 
     // ref() approach
     // const uName = ref('Maximilian') // create a reference (a reactive value we can use in our template)
-    const uAge = ref(31)
-    const firstName = ref('')
-    const lastName = ref('')
-    const lastNameInput = ref(null)
+    const uAge = ref(31);
+    const firstName = ref('');
+    const lastName = ref('');
+    const lastNameInput = ref(null);
 
     // we can also use provide and inject in Composition API
-    provide('userAge', uAge)
+    provide('userAge', uAge);
 
     // computed property is a ref() as well, but it's READ-ONLY
-    const uName = computed(function()  {
-      return `${firstName.value} ${lastName.value}`
-    })
+    const uName = computed(function() {
+      return `${firstName.value} ${lastName.value}`;
+    });
 
     // this is how we use watch in Composition API
     // whenever uAge or uName changes, this will execute
     watch([uAge, uName], function(newValues, oldValues) {
-      console.log('Old age: ' + oldValues[0])
-      console.log('New age: ' + newValues[0])
+      console.log('Old age: ' + oldValues[0]);
+      console.log('New age: ' + newValues[0]);
 
-      console.log('Old name: ' + oldValues[1])
-      console.log('New name: ' + newValues[1])
-    })
-
+      console.log('Old name: ' + oldValues[1]);
+      console.log('New name: ' + newValues[1]);
+    });
 
     // reactive() approach
     // const user = reactive({
@@ -75,7 +71,7 @@ export default {
 
     function setNewAge() {
       // ref() approach
-      uAge.value = 32
+      uAge.value = 32;
 
       // reactive() approach
       // user.age = 32
@@ -87,7 +83,7 @@ export default {
       // lastName.value = this.$refs.lastNameInput.value
 
       // NEW Vue3 way: (all refs are same)
-      lastName.value = lastNameInput.value.value
+      lastName.value = lastNameInput.value.value;
     }
 
     // function setFirstName(event) {
@@ -117,19 +113,19 @@ export default {
       lastName,
       lastNameInput,
       setLastName
-    } // return whatever you want to expose to template
+    }; // return whatever you want to expose to template
 
     // reactive() approach
     // passing 'raw' object (user) lets template use this in a reactive way
     // return { user: user, setAge: setNewAge } // setAge is a 'pointer' to method
-},
+  }
   // OLD WAY: (Options API)
   // data() {
   //   return {
   //     userName: 'Maximilian',
   //   }
   // },
-}
+};
 </script>
 
 <style>

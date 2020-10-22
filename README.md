@@ -10,8 +10,9 @@ Illustrate Composition API features and behaviour
 Issues that would occur in a large project
 
 ### Issues in Options API:
+
 - code that belongs together is split up across multiple options (lots of scrolling to make a change)
-- re-using logic across components is tricky
+- re-using logic across components is tricky (mixins - not obvious which mixin provides what function(s))
 
 ### What Changes?
 
@@ -43,13 +44,13 @@ props, emits, components
 
 setup(props, context) params:
 
-  props
+  props - properties
 
   context.attrs - properties not defined as properties which fall through
   context.slots - access slots programatically
   context.emit - can be used to call a custom event
 
-provide and inject
+provide and inject - dependency injection
 
 ## Helper methods
 
